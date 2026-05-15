@@ -1,0 +1,107 @@
+import {defineField, defineType} from 'sanity'
+
+export const recipeType = defineType({
+  name: 'recipe',
+  title: 'Recipe',
+  type: 'document',
+  groups: [
+    {name: 'basics', title: 'Basics', default: true},
+    {name: 'details', title: 'Details'},
+    {name: 'content', title: 'Content'},
+  ],
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (rule) => rule.required(),
+      group: 'basics',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {source: 'title', maxLength: 96},
+      validation: (rule) => rule.required(),
+      group: 'basics',
+    }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'datetime',
+      validation: (rule) => rule.required(),
+      initialValue: () => new Date().toISOString(),
+      group: 'basics',
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      group: 'basics',
+    }),
+    defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {hotspot: true},
+      group: 'basics',
+    }),
+    defineField({
+      name: 'youtubeUrl',
+      title: 'YouTube URL',
+      type: 'url',
+      description: 'Optional video link for the catch or cook video related to this recipe.',
+      group: 'basics',
+    }),
+    defineField({
+      name: 'priceTier',
+      title: 'Price Tier',
+      type: 'string',
+      description: 'Optional cost label such as $, $$, or $$$.',
+      group: 'details',
+    }),
+    defineField({
+      name: 'timeLabel',
+      title: 'Time',
+      type: 'string',
+      description: 'Optional prep/cook time label, for example 20 min.',
+      group: 'details',
+    }),
+    defineField({
+      name: 'servesLabel',
+      title: 'Serves',
+      type: 'string',
+      description: 'Optional serves label, for example Serves 2-4.',
+      group: 'details',
+    }),
+    defineField({
+      name: 'ingredients',
+      title: 'Ingredients',
+      type: 'array',
+      of: [{type: 'string'}],
+      group: 'details',
+    }),
+    defineField({
+      name: 'instructions',
+      title: 'Instructions',
+      type: 'array',
+      of: [{type: 'string'}],
+      group: 'details',
+    }),
+    defineField({
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{type: 'block'}],
+      group: 'content',
+    }),
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'publishedAt',
+      media: 'image',
+    },
+  },
+})
