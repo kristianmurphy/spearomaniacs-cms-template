@@ -1,6 +1,9 @@
-# Storefront Template Sanity Studio
+# CMS Template — Not Spearomaniacs Production
 
 This Studio powers the headless CMS for the `../spearomaniacs-template` Next.js site.
+
+> Create a new Sanity project for every copied site. Never put the Spearomaniacs
+> production project ID (`5v60gbu6`) in this template.
 
 ## Run locally
 

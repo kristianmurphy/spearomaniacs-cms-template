@@ -11,6 +11,12 @@ const studioTitle = import.meta.env.SANITY_STUDIO_TITLE || 'Storefront Template 
 const projectId = import.meta.env.SANITY_STUDIO_PROJECT_ID || ''
 const dataset = import.meta.env.SANITY_STUDIO_DATASET || 'production'
 
+if (projectId === '5v60gbu6') {
+  throw new Error(
+    'This is the CMS template. Create your own Sanity project and replace SANITY_STUDIO_PROJECT_ID; do not use the Spearomaniacs production project.',
+  )
+}
+
 export default defineConfig({
   name: 'default',
   title: studioTitle,
